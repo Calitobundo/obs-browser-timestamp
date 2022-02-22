@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap" rel="stylesheet"> 
+<style>
+* { 
+    padding: 0;
+    margin: 0;
+}
+
+#content {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+#timestamp {
+    background-color: rgba(0, 0, 0, 0.9);
+    color:rgb(255, 255, 255);
+    font-size: 24px;
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+} 
+</style>
+</head>
+<body id="content">
+    <div id="timestamp">
+        DateTime
+    </div>
+</body>
+<script defer>
+    {
+        const el = document.getElementById('timestamp');
+        setInterval(() => {
+            const date = new Date();
+            const da = date.toLocaleDateString("de-DE").split(".");
+            const ta = date.toLocaleTimeString("de-DE").split(":");
+            da[1] = da[1].length == 1 ? "0"+da[1] : da[1];
+            da[0] = da[0].length == 1 ? "0"+da[0] : da[0];
+            const timestampString = da[2]+"-"+da[1]+"-"+da[0]+" "+ta[0]+":"+ta[1]+":"+ta[2];
+            el.innerHTML = timestampString;
+        }, 200);
+    }
+</script>
+</html>
